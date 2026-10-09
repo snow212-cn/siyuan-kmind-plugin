@@ -1,3 +1,12 @@
+## v2.14.2 — Free-maintained fork
+
+- Disabled Pro license/trial gating for all existing client-side features.
+- Removed the Pro purchase/activation entry from the main plugin menu.
+- Added a checksum-pinned, reproducible package build and release workflow.
+- Preserved the upstream plugin identifier and bundled license notices.
+
+Historical upstream changelog entries follow.
+
 #### v1.1.3
 
 修复：

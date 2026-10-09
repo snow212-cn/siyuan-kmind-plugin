@@ -1,5 +1,10 @@
 # 思源笔记-kmind 插件
 
+> **免费维护版说明（snow212-cn fork）**：本仓库基于上游 KMind v2.14.1 发布包维护，Pro 功能限制已取消，所有现有功能无需订阅、激活码或试用即可使用。下方有关 Pro、购买和试用的旧更新记录仅作历史参考，不代表本免费版仍有限制。插件为兼容既有数据继续使用 `kmind-plugin` 内部标识；请通过本仓库的 Releases 更新，不要同时用思源集市上游版覆盖此版本。
+
+---
+
+
     xmind你不要打电话来了，我怕kmind误会
 
 ## QQ 交流群号：[130584086](https://qm.qq.com/cgi-bin/qm/qr?k=ViZ2ouiFw8LF5Zx1fg1SQUr1Y0bH1FAR&jump_from=webapi&authKey=UR61OGV1muKUgQZFTdBuxgdcXDWm2TLGisL5RZ9X6VYRY7NPM32L4ciyF426+qPF)
@@ -7,7 +12,7 @@
 
 ## 最近一次更新记录
 
-# KMind v2.14.1 维护阶段说明
+# 上游历史维护说明（仅作背景，本免费版不受其收费限制）
 
 感谢你一直使用 KMind2。
 
