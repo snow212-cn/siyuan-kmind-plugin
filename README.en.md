@@ -1,4 +1,10 @@
-# KMind v2.14.1 Maintenance Notice
+# KMind Free for SiYuan
+
+> **Free-edition fork maintained by snow212-cn.** Based on the upstream KMind v2.14.1 distribution, this fork removes Pro feature gates: all existing features are available without a subscription, activation code, or trial. Historical upstream changelog entries below may mention Pro/purchases/trials and do not describe restrictions in this free build. The internal plugin ID `kmind-plugin` is retained for data compatibility; update from this fork's Releases rather than overwriting it with the upstream marketplace build.
+
+---
+
+## Upstream v2.14.1 maintenance notice (historical background only)
 
 Thank you for using KMind2.
 

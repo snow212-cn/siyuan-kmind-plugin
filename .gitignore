@@ -38,3 +38,8 @@ dev
 dist
 build
 package.zip
+
+# Free-edition reproducible build outputs
+.cache/
+dist-package/
+build-report.json

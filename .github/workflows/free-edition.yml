@@ -1,0 +1,75 @@
+name: Build and publish KMind Free
+
+on:
+  push:
+    branches:
+      - feat/free-edition
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: kmind-free-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Test guarded patch logic
+        run: npm test
+
+      - name: Build from checksum-pinned upstream package
+        run: npm run build
+
+      - name: Verify free-edition behavior and syntax
+        run: npm run verify
+
+      - name: Package for SiYuan
+        run: npm run package
+
+      - name: Upload installable build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: kmind-free-package-${{ github.run_number }}
+          path: |
+            dist-package/package.zip
+            dist-package/SHA256SUMS.txt
+            build-report.json
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Publish versioned prerelease
+        if: ${{ github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[publish]') }}
+        uses: ncipollo/release-action@v1
+        with:
+          token: ${{ github.token }}
+          tag: v2.14.2-free.1
+          commit: ${{ github.sha }}
+          name: KMind Free 2.14.2-free.1
+          body: |
+            Free-maintained SiYuan KMind fork based on upstream 2.14.1.
+
+            - Pro feature gates are disabled in the published client bundle.
+            - The Pro purchase/activation menu entry is removed.
+            - Build input is checksum-pinned; transformation tests, JavaScript syntax checks, and ZIP integrity checks must all pass before publishing.
+            - This is a prerelease. Back up your SiYuan workspace and install/test it before relying on it for important data.
+          prerelease: true
+          makeLatest: false
+          allowUpdates: false
+          replacesArtifacts: false
+          artifactErrorsFailBuild: true
+          artifacts: |
+            dist-package/package.zip
+            dist-package/SHA256SUMS.txt
+            build-report.json
