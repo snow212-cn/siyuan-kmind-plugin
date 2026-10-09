@@ -3,7 +3,11 @@ name: Build and publish KMind Free
 on:
   push:
     branches:
+      - release
       - feat/free-edition
+  pull_request:
+    branches:
+      - release
   workflow_dispatch:
     inputs:
       release_tag:
