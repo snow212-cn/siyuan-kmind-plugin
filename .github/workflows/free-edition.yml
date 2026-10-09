@@ -5,6 +5,15 @@ on:
     branches:
       - feat/free-edition
   workflow_dispatch:
+    inputs:
+      release_tag:
+        description: "Unique versioned tag for this prerelease (for example v2.14.2-free.2)"
+        required: true
+        type: string
+      release_name:
+        description: "Release display name"
+        required: true
+        type: string
 
 permissions:
   contents: write
@@ -50,13 +59,13 @@ jobs:
           retention-days: 14
 
       - name: Publish versioned prerelease
-        if: ${{ github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[publish]') }}
+        if: ${{ github.event_name == 'workflow_dispatch' }}
         uses: ncipollo/release-action@v1
         with:
           token: ${{ github.token }}
-          tag: v2.14.2-free.1
+          tag: ${{ inputs.release_tag }}
           commit: ${{ github.sha }}
-          name: KMind Free 2.14.2-free.1
+          name: ${{ inputs.release_name }}
           body: |
             Free-maintained SiYuan KMind fork based on upstream 2.14.1.
 
